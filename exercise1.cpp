@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 using namespace std;
 
 
@@ -41,6 +42,7 @@ int main() {
 
 
 	// output
+	i=0;
 	cout << "Binary representation is: ";
 	while(i<numbits) {
 		cout<<binary_rep[i];
