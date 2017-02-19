@@ -40,7 +40,7 @@ int main() {
 	if (!isnormal(input))	{
 		printf("Subnormal."); return 0;}
 
-	//printf("in the making...\n");
+	//printf("In the making...\n");
 
 	input = abs(input);
 	while(input >= 2)	{
@@ -60,14 +60,17 @@ int main() {
 		HWprecision += to_string(input >= 1);
 		if(input >= 1) input--;
 	}
-	//cout << HWprecision << endl; //test line
+	//cout << "Mantissa is: " << HWprecision << endl; //test line
 
-	while(exponent != 0)	{
+	//while(exponent != 0)	{ //we need exactly 8 digits~~
+	for (int i; i < 8; i++)	{
 		HWexponent = to_string(exponent%2)+HWexponent;
 		exponent /= 2;
 	}
-
-	printf("Your floating number, in IEEE 754 standard, is represented as:\n");
+	//cout << "Exponent is: " << HWexponent << endl; //test line
+	
+	//result is:
+	printf("Your number, in IEEE 754 standard, is represented as:\n");
 	cout << HWsign << HWexponent << HWprecision << endl;
 
 
