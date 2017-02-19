@@ -4,32 +4,88 @@ print bit representation of an integer
 
 // output integers in binary format
 #include <iostream>
+#include <cmath>
 using namespace std;
+
+// funstion prototype
+int logBase2(unsigned number);
+void numtoBinary(unsigned number, int remDigit);
 
 int main() {
 	
-	int x = 11; 
+	int number; // integer to be output
+	int remDigit; // log2 of the input integer
+	cout << "Enter an integer value: " << endl;
+	cin >> number;
 	
-	if (x >= 0) {
+	// if the integer is negative, convert into unsigned
+	if (number < 0) {
 		
-		for (int i = 1; i <= 32; i++) {
-						
-			unsigned y;
-			y = x % 2;
-			x = (x-y)/2;
-			
-			cout << y;
-			
-			if (i % 8 == 0) {
-				cout << ' ';
-			}
-		}
-				
+		// print the number sign
+		cout << "You entered negative integer: " << number << endl;
+		unsigned neg_number = number;
+		
+		// get the log2 of the value
+		remDigit = logBase2(neg_number);
+		
+		// plot binary represantation of the unsigned number
+		numtoBinary(neg_number, remDigit);
 	}
-	
 	else {
 		
-		cout << 'Negative number' << endl;
+		// print the number sign
+		cout << "You entered positive integer: " << number << endl;
+		unsigned pos_number = number;
+		// get the log2 of the value
+		remDigit = logBase2(pos_number);
+		
+		// plot the binary representation of the unsigned number
+		numtoBinary(pos_number, remDigit);
 	}
 	
 }
+
+// 	log2 of the number
+int logBase2(unsigned number) {
+	
+	return log2(number);
+}	
+
+// binary output of the integer value
+void numtoBinary(unsigned number, int remDigit) {
+	
+	int num_bits; // number of bits for integer representation
+	num_bits = 8*sizeof(number) - 1;
+	
+	// plot 0 for the binary digits that are greater than remDigit
+	for (int i = num_bits; i > remDigit; i--) {
+		cout << '0';
+		
+		// insert space at each byte
+		if ( i % 8 == 0) {
+			cout << ' ';
+		}
+	}
+	
+	// output binary digits for the remaining portion
+	for (int j = remDigit; j >= 0; j--) {
+		
+		int power2 = pow(2.0,j);
+		// determine the binary digits
+		if (number % power2 < number) {
+			cout << '1';
+			number = number - pow(2,j);
+		}
+		else {
+			cout << '0';
+		}
+		
+		// insert space at each byte
+		if ( j % 8 == 0) {
+			cout << ' ';
+		}
+	}
+				
+}
+	
+	
