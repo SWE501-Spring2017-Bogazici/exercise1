@@ -8,9 +8,13 @@ string convertToBinary(int);
 
 int main(int argc, char* argv[])
 {
-	int input = stoi(argv[1]);
-	string n = convertToBinary(input);
-	cout << n << endl;
+	if(argc > 1)
+	{
+		int input = stoi(argv[1]);
+		string n = convertToBinary(input);
+		cout << n << endl;
+	}
+	
 	return 0;
 }
 
@@ -53,7 +57,7 @@ string convertToBinary(int n)
 			}
 		}
 		
-		max /= 2;
+		max = max >> 1;
 	}
 
 	return b;
