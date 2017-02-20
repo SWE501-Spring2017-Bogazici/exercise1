@@ -63,7 +63,7 @@ int main() {
 	//cout << "Mantissa is: " << HWprecision << endl; //test line
 
 	//while(exponent != 0)	{ //we need exactly 8 digits~~
-	for (int i; i < 8; i++)	{
+	for (int i = 0; i < 8; i++)	{
 		HWexponent = to_string(exponent%2)+HWexponent;
 		exponent /= 2;
 	}
