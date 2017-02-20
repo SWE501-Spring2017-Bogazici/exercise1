@@ -1,52 +1,35 @@
-//============================================================================
-// Name        : exercise1.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description :
-
-// This console program expects input from standard input, computes the
-// binary representation of the number, stores it in an array, and prints it out in a loop.
-
-
-
-//============================================================================
-
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
 using namespace std;
 
+// cool method:
 
-int main() {
-	// input
+// AND the given number with 2^i, eg. 2^3=1000
+// and you will get the ith bit of the representation of that number.
+
+// why? because 2^i has 0 for all the digits other than the ith one
+// so they AND to 0 whereas the ith digit ANDs to itself.
+
+// Do this for all 32 bits starting from left going to right
+// and printing 1 if the result of the AND is true and 0 if not.
+
+void bin(unsigned n)
+{
+    unsigned i;
+    // start with the left-most bit, the 32nd one, up to the right-most bit
+    for (i = 1 << 31; i > 0; i = i / 2)
+        (n & i)? printf("1"): printf("0");
+}
+
+int main(void)
+{
 	int input;
-	cout << "Please enter an integer value: ";
+	cout << "Enter an integer: ";
 	cin >> input;
 
-	// init
-	int quo=input;
-	int rem;
-	int numbits=ceil(log2(input));
-	int binary_rep[numbits];
-	int i=0;
-
-	// process
-	while (quo>0) {
-		quo= input>>1;
-		rem= input-(quo<<1);
-		input=quo;
-		binary_rep[i]=rem;
-		i=i+1;
-	}
-
-
-	// output
-	i=0;
 	cout << "Binary representation is: ";
-	while(i<numbits) {
-		cout<<binary_rep[i];
-		i=i+1;
-	}
-	return 0;
+	bin(input);
+	cout << endl;
+
 }
